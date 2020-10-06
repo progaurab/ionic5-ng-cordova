@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "249069276403",
+    "firebase_url": "https://fir-authentication-b3223.firebaseio.com",
+    "project_id": "fir-authentication-b3223",
+    "storage_bucket": "fir-authentication-b3223.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:249069276403:android:9b3acaeae87b81ccedbb86",
+        "android_client_info": {
+          "package_name": "dev.instilllearning.auth"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "249069276403-a6svqm0idjsi4bale4a0ddcolhm3l13h.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "dev.instilllearning.auth",
+            "certificate_hash": "e735c3a5beaee5e4603a141dc0b24aa7eab0ef5c"
+          }
+        },
+        {
+          "client_id": "249069276403-qhb2gkrhvcjdjqlm97gea8f3r11m28eo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCCjAg6PhR75lwIH1uaSA3z87Yt4LHqKwU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "249069276403-qhb2gkrhvcjdjqlm97gea8f3r11m28eo.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -24,6 +24,7 @@ export class AppComponent {
 
   initializeApp() {
     this.platform.ready().then(() => {
+      // FB login
       //Here we will check if the user is already logged in
       //because we don't want to ask users to log in each time they open the app
       this.nativeStorage.getItem('facebook_user')
@@ -36,6 +37,21 @@ export class AppComponent {
         this.router.navigate(["/login"]);
         this.splashScreen.hide();
       })
+
+      // Google Login
+      //Here we will check if the user is already logged in
+      //because we don't want to ask users to log in each time they open the app
+      this.nativeStorage.getItem('google_user')
+      .then( data => {
+        //user is previously logged and we have his data
+        //we will let him access the app
+        this.router.navigate(["/user"]);
+        this.splashScreen.hide();
+      }, err => {
+        this.router.navigate(["/login"]);
+        this.splashScreen.hide();
+      })
+
       this.statusBar.styleDefault();
     });
   }

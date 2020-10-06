@@ -1,9 +1,13 @@
   import { Component } from '@angular/core';
   import { Facebook } from '@ionic-native/facebook/ngx';
+  import { GooglePlus } from '@ionic-native/google-plus/ngx';
   import { Router } from '@angular/router';
   import { NativeStorage } from '@ionic-native/native-storage/ngx';
   import { LoadingController, AlertController, Platform } from '@ionic/angular';
-  
+  import { environment } from '../../environments/environment';
+
+
+
   @Component({
     selector: 'app-login',
     templateUrl: './login.page.html',
@@ -15,6 +19,7 @@
   
     constructor(
       private fb: Facebook,
+      private googlePlus: GooglePlus,
       private nativeStorage: NativeStorage,
       public loadingController: LoadingController,
       private router: Router,
@@ -39,6 +44,7 @@
   
         this.fb.api("/me?fields=name,email", permissions)
         .then(user => {
+          console.log('facebook user--> '+JSON.stringify(user));
           user.picture = "https://graph.facebook.com/" + userId + "/picture?type=large";
           //now we have the users info, let's save it in the NativeStorage
           this.nativeStorage.setItem('facebook_user',
@@ -62,6 +68,39 @@
         }
         loading.dismiss();
       });
+    }
+
+    async doGoogleLogin(){
+      const loading = await this.loadingController.create({
+        message: 'Please wait...'
+      });
+      this.presentLoading(loading);
+      this.googlePlus.login({
+        'scopes': '', // optional - space-separated list of scopes, If not included or empty, defaults to `profile` and `email`.
+        'webClientId': environment.googleWebClientId, // optional - clientId of your Web application from Credentials settings of your project - On Android, this MUST be included to get an idToken. On iOS, it is not required.
+        'offline': true, // Optional, but requires the webClientId - if set to true the plugin will also return a serverAuthCode, which can be used to grant offline access to a non-Google server
+        })
+        .then(user => {
+          console.log('user--> '+user);
+          //save user data on the native storage
+          this.nativeStorage.setItem('google_user', {
+            name: user.displayName,
+            email: user.email,
+            picture: user.imageUrl
+          })
+          .then(() => {
+             this.router.navigate(["/user"]);
+          }, (error) => {
+            console.log(error);
+          })
+          loading.dismiss();
+        }, err => {
+          console.log(err);
+          if(!this.platform.is('cordova')){
+            this.presentAlert();
+          }
+          loading.dismiss();
+        })
     }
   
     async presentAlert() {
