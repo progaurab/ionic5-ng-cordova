@@ -1,18 +1,20 @@
 <ion-content class="login-content" padding>
   <ion-row>
     <ion-col>
-      <h1 class="logo">LOGO</h1>
+      <h1 class="logo"><img src="../../assets/bg.png"></h1>
       <p class="description">This app helps you add Facebook Login to your Ionic 5 App.</p>
     </ion-col>
   </ion-row>
   <ion-row>
     <ion-col>
-      <ion-button class="log-in-button" color="primary" expand="block" (click)="doFbLogin()">
-        LOG IN WITH FACEBOOK
+     
+      <ion-button  color="danger" expand="block" (click)="doGoogleLogin()">
+        <ion-icon name="logo-google" ></ion-icon><span style="margin-left:8px">Login with google</span>
       </ion-button>
-      <ion-button class="log-in-button" color="danger" expand="block" (click)="doGoogleLogin()">
-        LOG IN WITH GOOGLE
+      <ion-button  color="primary" expand="block" (click)="doFbLogin()">
+        <ion-icon name="logo-facebook" ></ion-icon><span style="margin-left:8px">LOG IN WITH FACEBOOK</span>
       </ion-button>
+     
     </ion-col>
 
   </ion-row>
